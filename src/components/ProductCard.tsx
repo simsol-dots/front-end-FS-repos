@@ -1,66 +1,40 @@
+import type ProductType from "@/lib/types/productType";
 
+type ProductCardProps = {
+  product: ProductType;
+};
 
-import ProductType from '@/lib/types/productType';
-import React from 'react'
-
-
-  
-export default function ProductCard(props: ProductType) {
-
-
-    // const image = "https://iqguernsey.com/cdn/shop/files/IMG-18072112_m_jpeg_1_d2b1dcef-4d1c-45f0-8828-5d2e796acd2b.jpg?v=1757469820";
-    // const title = "iPhone 18 Pro Max";
-    // const description = "Experience premium design, powerful performance, and an exceptional smartphone experience.";
-    // const price = 1999.99;
-
-
-
+export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow hover:shadow-xl">
-        {/* Product Image */}
-        <div className="flex h-72 items-center justify-center bg-gray-50 p-6">
-          <img
-            src={props.image}
-            alt={props.title}
-            className="h-full w-full object-contain"
-          />
-        </div>
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+      <div className="flex h-64 items-center justify-center bg-slate-100 p-6">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="h-full w-full object-contain"
+        />
+      </div>
 
-        {/* Product Details */}
-        <div className="space-y-4 p-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-wider text-gray-500">
-              Apple
-            </p>
-            <h2 className="mt-1 text-2xl font-bold text-gray-900">
-              {props.title}
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-gray-600">
-              {props.description}
-            </p>
-          </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h2 className="text-xl font-bold text-slate-950">{product.title}</h2>
+        <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">
+          {product.description}
+        </p>
 
-          {/* Price */}
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-500">Price</span>
-            <span className="text-2xl font-bold text-gray-900">
-              ${
-              props.price
-              }
-            </span>
-          </div>
+        <div className="mt-5 flex items-center justify-between">
+          <span className="text-2xl font-bold text-slate-950">
+            ${product.price.toFixed(2)}
+          </span>
 
-          {/* Add to Cart */}
           <button
             type="button"
-            className="w-full rounded-xl bg-black px-5 py-3 font-semibold text-white transition-colors hover:bg-gray-800 active:scale-[0.98]"
+            className="rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600"
           >
             Add to Cart
           </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
